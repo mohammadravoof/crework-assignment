@@ -28,7 +28,7 @@ export default function Page() {
      
      <div className={inter.className}>
        <div className="text-xl font-normal text-[#606060]">
-       Don't have an account? Create a 
+       Don&lsquo;t have an account? Create a 
        <Link href="/signup" className="text-[#0054a1]"> new account</Link><span className="text-black">.</span>
        </div>
      </div>
