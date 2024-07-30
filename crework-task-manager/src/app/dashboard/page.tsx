@@ -9,14 +9,14 @@ import Dashboardmain from "../ui/dashboardmain"
 
 function page() {
   return (
+    <>
     <div className="flex bg-[#f7f7f7] h-full">
 
       <Dashboardfixed/>
       <Dashboardmain/>
-      
-
-    {/* <Taskmodal/> */}
     </div>
+      <Taskmodal/>
+      </>
   )
 }
 

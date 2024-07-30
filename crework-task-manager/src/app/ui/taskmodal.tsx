@@ -19,8 +19,16 @@ function Taskmodal() {
                         <Image src="/crossdoublearrow.svg" width={24} height={24} alt="zoom button" />
                     </div>
                     <div className="flex gap-4 items-center">
-                        <Image src="/share.svg" width={98} height={40} alt="close button" />
-                        <Image src="/favorite.svg" width={116} height={40} alt="zoom button" />
+                        {/* <Image src="/share.svg" width={98} height={40} alt="close button" />
+                        <Image src="/favorite.svg" width={116} height={40} alt="zoom button" /> */}
+                        <div className="flex p-2 gap-[14px] bg-[#f4f4f4] rounded-[4px] items-center h-10">
+                            <div className={`${inter.className} text-[#797979]`}>Share</div>
+                            <Image src="/share.svg" alt="share" height={24} width={24}/>
+                        </div>
+                        <div className="flex p-2 gap-[14px] bg-[#f4f4f4] rounded-[4px] items-center h-10">
+                            <div className={`${inter.className} text-[#797979]`}>Favorite</div>
+                            <Image src="/star.svg" alt="favorite" height={24} width={24}/>
+                        </div>
                     </div>
                 </div>
                 
