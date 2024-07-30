@@ -1,11 +1,13 @@
 import Image from "next/image"
-import { inter } from "../../../styles/fonts"
+import { barlow, inter } from "../../../styles/fonts"
 import Link from "next/link"
+import Taskmodalproperty from "./taskmodalproperty"
 
 function Taskmodal() {
   return (
-    <div className="flex flex-col bg-red-50 w-[670px] h-full absolute right-0 top-0">
-        <div className="flex flex-col bg-red-100 gap-8 p-6">
+    <div className="flex bg-black bg-opacity-10 w-screen ">
+    <div className="flex flex-col w-[670px] h-full absolute right-0 top-0 bg-white">
+        <div className="flex flex-col gap-8 p-6">
             
             <div className="flex flex-col w-[38.875rem] gap-[1.688rem]">
                 
@@ -22,16 +24,59 @@ function Taskmodal() {
                     </div>
                 </div>
                 
-                <div className="">
+                <div className="flex flex-col w-full gap-[2.375rem]">
                     
+                    <div className="flex flex-col gap-[2rem] ">
+                        
+                        <div className={`${barlow.className} text-5xl text-[#cccccc] w-full`}>Title</div>
+                        
+                        <div className="flex gap-[3.75rem] w-full">
+                            
+                            <div className="flex flex-col gap-[2rem]">
+                                <Taskmodalproperty imagesrc={"/status.svg"} 
+                                                    imagealt={"status image"} 
+                                                    name={"Status"}/>
+                                <Taskmodalproperty imagesrc={"/priority.svg"} 
+                                                    imagealt={"priority image"} 
+                                                    name={"Priority"}/>
+                                <Taskmodalproperty imagesrc={"/deadline.svg"} 
+                                                    imagealt={"deadline image"} 
+                                                    name={"Deadline"}/>
+                                <Taskmodalproperty imagesrc={"/description.svg"} 
+                                                    imagealt={"description image"} 
+                                                    name={"Description"}/>
+                            </div>
+
+                            <div className="flex flex-col gap-[2rem]">
+                                <div className={`${inter.className} leading-6 text-[#c1bdbd]`}>
+                                    Not selected</div>
+                                <div className={`${inter.className} leading-6 text-[#c1bdbd]`}>
+                                    Not selected</div>
+                                <div className={`${inter.className} leading-6 text-[#c1bdbd]`}>
+                                    Not selected</div>
+                                <div className={`${inter.className} leading-6 text-[#c1bdbd]`}>
+                                    Not selected</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div className="flex gap-[1.438rem] items-center">
+                        <Image src="/plus.svg" height={24} width={24} alt="plus button"></Image>
+                        <div className={`${inter.className}`}>Add custom property</div>
+                    </div>
+
                 </div>
 
             </div>
 
             <div className="w-full h-[0.063rem] bg-[#dedede]"></div>
             
-            <div className={`${inter.className} font-medium text-base text-[#c0bddb]`}>Start writing, or drag your own files here.</div>
+            <div className={`${inter.className} text-[#C0BDBD]`}>
+                Start writing, or drag your own files here.</div>
         </div>
+    </div>
     </div>
   )
 }
