@@ -4,15 +4,16 @@ import Link from "next/link"
 import { inter } from "../../../styles/fonts"
 import Optionsdashboardfixed from "../ui/optionsdashboardfixed"
 import Dashboardfixed from "../ui/dashboardfixed"
+import Dashboardmain from "../ui/dashboardmain"
 
 
 function page() {
   return (
-    <div className="flex bg-[#f7f7f7] ">
+    <div className="flex bg-[#f7f7f7] h-full">
 
       <Dashboardfixed/>
-
-      <div className="flex flex-col w-[69.188rem] bg-blue-50 gap-4 ml-[18.813rem]">a</div>
+      <Dashboardmain/>
+      
 
     {/* <Taskmodal/> */}
     </div>
