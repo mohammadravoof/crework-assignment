@@ -5,7 +5,7 @@ import Taskmodalproperty from "./taskmodalproperty"
 
 function Taskmodal() {
   return (
-    <div className="flex bg-black bg-opacity-10 w-screen ">
+    <div className="flex bg-black w-screen">
     <div className="flex flex-col w-[670px] h-full absolute right-0 top-0 bg-white">
         <div className="flex flex-col gap-8 p-6">
             
