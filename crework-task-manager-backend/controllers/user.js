@@ -48,8 +48,9 @@
         if (!isMatch) {
           return res.status(401).json({ error: 'Invalid Username or Password!' });
         }
-
+        console.log(`${user}`)
         const token = setUser(user);
+        console.log(token)
         res.cookie('uid',token)
         return res.redirect("/dashboard");  
     } catch (error) {

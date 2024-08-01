@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express')
+const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const { connectMongoDb } = require("./connection.js")
 const { logReqRes } = require('./middlewares')
@@ -16,6 +17,12 @@ const mongodbUrl = process.env.MONGODB_URL;
 connectMongoDb(mongodbUrl);
 
 //Middleware - Plugin
+app.use(cors({
+  origin: 'http://localhost:3001',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
