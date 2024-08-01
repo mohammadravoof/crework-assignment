@@ -22,8 +22,14 @@ app.use(cookieParser())
 
 app.use(logReqRes('log.txt'));
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Something went wrong!' });
+  });
 // Routes
 app.use('/', userRoute)
 app.use('/', taskRoute)
+
+
 
 app.listen(port, () => console.log(`Server is running on port ${port}`))

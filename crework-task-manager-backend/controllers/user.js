@@ -1,9 +1,11 @@
 
+ const bcrypt = require('bcrypt')
  const User = require('../models/user')
  const {setUser} = require('../service/auth')
  
  async function handleSignUp(req, res) {
-    const body = req.body;
+    try {
+        const body = req.body;
     if(
         !body ||
         !body.name ||
@@ -13,32 +15,47 @@
         return res.status(400).json({ msg: "All fields are required..."})
     }
 
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(body.password, saltRounds);
+
     const result = await User.create({
         name: body.name,
         email: body.email,
-        password: body.password
+        password: hashedPassword
     })
 
-    return res.status(201).redirect("/");
+    return res.status(200).redirect("/");
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+    
  }
 
  async function handleLogin(req,res) {
-    const {email,password} = req.body;
-    if(
-        !email ||
-        !password
-    ) {
-        return res.status(400).json({ msg: "All fields are required..."})
-    }
-
-    const user = await User.findOne({ email, password});
-    if(!user) return res.json({ error: "Invalid Username or Password!"})
+    try {
+        const {email,password} = req.body;
+        if(
+            !email ||
+            !password
+        ) {
+            return res.status(400).json({ msg: "All fields are required..."})
+        }
     
+        const user = await User.findOne({ email });
+        if(!user) return res.json({ error: "Invalid Credentials!"})
+    
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return res.status(401).json({ error: 'Invalid Username or Password!' });
+        }
 
-
-    const token = setUser(user);
-    res.cookie('uid',token)
-    return res.redirect("/dashboard");
+        const token = setUser(user);
+        res.cookie('uid',token)
+        return res.redirect("/dashboard");  
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+    
  }
 
  module.exports = {
