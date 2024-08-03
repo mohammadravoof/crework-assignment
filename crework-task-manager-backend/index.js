@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express')
+const { connectMongoDb } = require("./connection.js")
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const { connectMongoDb } = require("./connection.js")
 const { logReqRes } = require('./middlewares')
 const userRoute = require('./routes/user.js')
 const taskRoute = require('./routes/task.js')

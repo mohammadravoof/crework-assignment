@@ -6,6 +6,7 @@ import Link from "next/link"
 import { inter,barlow } from "../../../styles/fonts"
 import Placeholder from "../ui/placeholder"
 import Primarybutton from "../ui/primarybutton"
+import { redirect } from 'next/dist/server/api-utils'
 
 export default function Page() {
 
@@ -29,6 +30,7 @@ export default function Page() {
       const response = await login(formData);
       
       console.log('Login initiated:', response);
+
 
     } catch (error) {
       console.error('Login failed:', error);

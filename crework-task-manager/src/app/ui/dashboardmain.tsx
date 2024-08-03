@@ -1,5 +1,5 @@
 import React from 'react'
-import { Barlow } from '@next/font/google'
+import { Barlow } from "next/font/google"
 import { barlow,inter } from '../../../styles/fonts'
 import Image from 'next/image'
 import Bannerdashboard from './bannerdashboard'

@@ -4,10 +4,16 @@ import Link from 'next/link'
 import { inter } from '../../../styles/fonts'
 import Optionsdashboardfixed from './optionsdashboardfixed'
 
-function Dashboardfixed() {
+interface ButtonProps {
+  onClick: () => void;
+
+}
+
+export const Dashboardfixed: React.FC<ButtonProps> = ({ onClick }) => {
+
   return (
-    <div className="fixed flex flex-col h-full w-[17.813rem]
-       px-4 pt-6 pb-8 border border-[#dedede] bg-[#ffffff] justify-between">
+    <div className={`fixed flex flex-col h-full w-[17.813rem]
+       px-4 pt-6 pb-8 border border-[#dedede] bg-[#ffffff] justify-between`}>
         
         <div className="flex flex-col gap-4 w-full">
 
@@ -49,7 +55,7 @@ function Dashboardfixed() {
 
             </div>
 
-            <button className="flex gap-2 p-2 bg-gradient-to-b from-[#4c38c2] to-[#2f2188] border border-[#4836cc] 
+            <button onClick={onClick} className="flex gap-2 p-2 bg-gradient-to-b from-[#4c38c2] to-[#2f2188] border border-[#4836cc] 
             rounded-lg items-center justify-center">
               <div className={`${inter.className} text-[#ffffff] font-medium text-xl`}>Create new task</div>
               <Image src="/invertedwhitepluscircle.svg" alt="plus button" width={24} height={24}/>

@@ -1,7 +1,7 @@
 // styles/fonts.ts
 
-import { Barlow } from '@next/font/google';
-import { Inter } from '@next/font/google';
+import { Barlow } from "next/font/google";
+import { Inter } from "next/font/google";
 
 export const barlow = Barlow({
   subsets: ['latin'],

@@ -3,9 +3,15 @@ import { barlow, inter } from "../../../styles/fonts"
 import Link from "next/link"
 import Taskmodalproperty from "./taskmodalproperty"
 
-function Taskmodal() {
+interface FormProps {
+    onClose: () => void;
+  }
+  export const Taskmodal: React.FC<FormProps> = ({ onClose }) => {
   return (
-    <div className="flex bg-black w-screen">
+    <div className="flex w-screen bg-black">
+        <div
+            className="absolute inset-0 cursor-pointer"
+            onClick={onClose} />
     <div className="flex flex-col w-[670px] h-full absolute right-0 top-0 bg-white">
         <div className="flex flex-col gap-8 p-6">
             
@@ -13,9 +19,9 @@ function Taskmodal() {
                 
                 <div className="flex justify-between">
                     <div className="flex gap-4 items-center">
-                        <Link href="/dashboard">
+                        <button onClick={onClose}>
                         <Image src="/close.svg" width={24} height={24} alt="close button" />
-                        </Link>
+                        </button>
                         <Image src="/crossdoublearrow.svg" width={24} height={24} alt="zoom button" />
                     </div>
                     <div className="flex gap-4 items-center">

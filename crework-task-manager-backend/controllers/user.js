@@ -52,7 +52,7 @@
         const token = setUser(user);
         console.log(token)
         res.cookie('uid',token)
-        return res.redirect("/dashboard");  
+        return res.response({message:"Login successful!"})
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
