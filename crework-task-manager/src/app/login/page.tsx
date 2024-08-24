@@ -30,8 +30,7 @@ export default function Page() {
     try {
        await login(formData);
        router.push('/dashboard')
-      
-      console.log('Login initiated:');
+       console.log('Login initiated:');
 
 
     } catch (error) {

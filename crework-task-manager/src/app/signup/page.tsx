@@ -33,7 +33,6 @@ export default function Page() {
     try {
       const response = await signUp(formData);
       router.push('/login')
-      
       console.log('SignUp initiated:', response);
 
 
