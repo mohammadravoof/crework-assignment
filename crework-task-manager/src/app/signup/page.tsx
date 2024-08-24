@@ -1,9 +1,48 @@
+'use client'
 import Link from "next/link"
 import { inter,barlow } from "../../../styles/fonts"
 import Placeholder from "../ui/placeholder"
 import Primarybutton from "../ui/primarybutton"
+import { useState } from "react"
+import { signUp } from "../lib/apiService"
+import { useRouter } from 'next/navigation'
+
 
 export default function Page() {
+
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+  
+  const router = useRouter()
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await signUp(formData);
+      router.push('/login')
+      
+      console.log('SignUp initiated:', response);
+
+
+    } catch (error) {
+      console.error('SignUp failed:', error);
+      // Handle error
+    }
+  };
+
     return (
     <main className="flex min-h-screen flex-col p-24 items-center bg-gradient-to-b
      from-[#ffffff] to-[#afa3ff]">
@@ -16,14 +55,12 @@ export default function Page() {
      </div>
 
      <div className="flex flex-col gap-[1.375rem]">
-       <div className="flex flex-col gap-6">
-       <Placeholder name={"Full name"} type={"text"} eye={false}/>
-       <Placeholder name={"Your email"} type={"text"} eye={false}/>
-       <Placeholder name={"Password"} type={"password"} eye />
-       <Link href="/dashboard">
+       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+       <Placeholder name="name" placeholder="Full name" type="text" value={formData.name} onChange={handleChange} eye={false}/>
+       <Placeholder name="email" placeholder="Your email" type="text" value={formData.email} onChange={handleChange} eye={false}/>
+       <Placeholder name="password" placeholder="Password" type="password" value={formData.password} onChange={handleChange} eye />
        <Primarybutton name={"Sign up"}/>
-       </Link>
-       </div>
+       </form>
 
      </div>
      

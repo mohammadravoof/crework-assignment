@@ -6,6 +6,7 @@
  async function handleSignUp(req, res) {
     try {
         const body = req.body;
+        const email = body.email;
     if(
         !body ||
         !body.name ||
@@ -14,6 +15,12 @@
     ) {
         return res.status(400).json({ msg: "All fields are required..."})
     }
+
+    const user = await User.findOne({ email });
+    console.log(user)
+    if(user){
+         return res.status(400).json({success:false, message:"User Already Exists"})
+        }
 
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(body.password, saltRounds);
@@ -24,7 +31,7 @@
         password: hashedPassword
     })
 
-    return res.status(200).redirect("/");
+    return res.status(200).json({ message: `user created username: ${body.name}`})
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -33,7 +40,7 @@
 
  async function handleLogin(req,res) {
     try {
-        const {email,password} = req.body;
+        const { email, password } = req.body;
         if(
             !email ||
             !password
@@ -52,7 +59,7 @@
         const token = setUser(user);
         console.log(token)
         res.cookie('uid',token)
-        return res.response({message:"Login successful!"})
+        return res.status(200).json({message:"Login successful!"})
     } catch (error) {
         res.status(400).json({ error: error.message });
     }

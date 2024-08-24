@@ -1,12 +1,12 @@
 'use client'
-import React, { useState } from 'react'
-
+import { useState } from 'react'
 import { login } from '../lib/apiService'
 import Link from "next/link"
 import { inter,barlow } from "../../../styles/fonts"
 import Placeholder from "../ui/placeholder"
 import Primarybutton from "../ui/primarybutton"
-import { redirect } from 'next/dist/server/api-utils'
+import { useRouter } from 'next/navigation'
+
 
 export default function Page() {
 
@@ -15,6 +15,7 @@ export default function Page() {
     password: ''
   });
 
+  const router = useRouter()
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +28,10 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await login(formData);
+       await login(formData);
+       router.push('/dashboard')
       
-      console.log('Login initiated:', response);
+      console.log('Login initiated:');
 
 
     } catch (error) {
@@ -51,8 +53,8 @@ export default function Page() {
 
      <div className="flex flex-col gap-[1.375rem]">
        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-       <Placeholder name="email" type="text" value={formData.email} onChange={handleChange} eye={false}/>
-       <Placeholder name="password" type="password" value={formData.password} onChange={handleChange} eye />
+       <Placeholder placeholder='email' name="email" type="text" value={formData.email} onChange={handleChange} eye={false}/>
+       <Placeholder placeholder='password' name="password" type="password" value={formData.password} onChange={handleChange} eye />
        <Primarybutton name={"Login"}/>
        </form>
 

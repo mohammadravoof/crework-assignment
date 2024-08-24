@@ -1,17 +1,19 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3000/',
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: 'http://localhost:4000',
+  // headers: {
+  //   'Content-Type': 'application/json',
+  // },
   withCredentials: true, //Include cookies
 });
 
 // Signup
 export const signUp = async (userData: any) => {
   try {
+    console.log(userData)
     const response = await apiClient.post('/signup', userData);
+    console.log(response)
     return response.data;
   } catch (error) {
     console.error('Error during sign up:', error);
@@ -22,7 +24,9 @@ export const signUp = async (userData: any) => {
 // Login
 export const login = async (loginData: any) => {
   try {
+    console.log(loginData)
     const response = await apiClient.post('/', loginData);
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error('Error during login:', error);
